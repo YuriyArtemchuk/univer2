@@ -1,8 +1,14 @@
 from django.shortcuts import render
+from django.contrib.auth.models import User
+from django.contrib.auth import login, logout, authenticate
 
 
 def reg(request):
-    return render(request, 'account/reg.html')
+    if request.method == 'GET':
+        return render(request, 'account/reg.html')
+    elif request.method == "POST":
+        #...
+        return render(request, 'account/reg_res.html')
 
 
 def entry(request):
