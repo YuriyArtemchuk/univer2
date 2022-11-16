@@ -37,17 +37,17 @@
 
           {% if not user.is_authenticated %}
             <li class="nav-item">
-                  <a class="nav-link" href="#">Вхід</a>
+                  <a class="nav-link" href="/account/entry">Вхід</a>
               </li>
               <li class="nav-item">
-                  <a class="nav-link"  href="#">Реєстрація</a>
+                  <a class="nav-link"  href="/account/reg">Реєстрація</a>
               </li>
           {% else %}
               <li class="nav-item">
-                  <a class="nav-link" href="#">Вихід</a>
+                  <a class="nav-link" href="/account/exit">Вихід</a>
               </li>
               <li class="nav-item">
-                  <a class="nav-link"  href="#">Профіль</a>
+                  <a class="nav-link"  href="/account/profile">Профіль</a>
               </li>
           {% endif %}
         </ul>
