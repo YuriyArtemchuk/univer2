@@ -5,6 +5,7 @@
 {% block caption %}Реєстрація{% endblock caption %}
 
 {% block content %}
+{% load static %}
     <div class="container"
         style="text-align: center; margin: 45px 0px">
         <h3 style="color: purple">Реєстрація</h3>
@@ -13,30 +14,30 @@
             <div class="form_group">
                 Логін: <br>
                 <input type="text" id="login" name="login" required>
-                <img id="login-ico" src="{% static 'img/question.png' %}" alt="" class="icon">
-                <div id="login-err" class="login-err"></div>
+                <img id="login-ico" src="{% static 'img/question.png' %}" alt="..." class="icon">
+                <div id="login-err" class="error"></div>
             </div>
             <div class="form_group">
                  Пароль: <br>
-                <input type="text" id="password1" name="password1" required>
-                <img id="passw1-ico" src="{% static 'img/question.png' %}" alt="" class="icon">
-                <div id="passw1-err" class="passw-err"></div>
+                <input type="password" id="pass1" name="pass1" required>
+                <img id="pass1-ico" src="{% static 'img/question.png' %}" alt="" class="icon">
+                <div id="pass1-err" class="error"></div>
             </div>
             <div class="form_group">
                 Повтор: <br>
-                <input type="text" id="passw2" name="passw2" required>
-                <img id="passw2-ico" src="{% static 'img/question.png' %}" alt="" class="icon">
-                <div id="passw2-err" class="passw2-err"></div>
+                <input type="text" id="pass2" name="pass2" required>
+                <img id="pass2-ico" src="{% static 'img/question.png' %}" alt="" class="icon">
+                <div id="pass2-err" class="error"></div>
             </div>
             <div class="form_group">
                 E-mail: <br>
-                <input type="text" id="email" name="email" required>
+                <input type="email" id="email" name="email" required>
                 <img id="email-ico" src="{% static 'img/question.png' %}" alt="" class="icon">
-                <div id="email-err" class="passw2-err"></div>
+                <div id="email-err" class="error"></div>
             </div>
             <p style="margin-top: 30px; text-align: center">
                 <input id="submit" type="submit" value="Відправити" class="btn btn-success b1">
-                <input id="reset" type="reset   " value="Відправити" class="btn btn-danger b1">
+                <input id="reset" type="reset" value="Очистити" class="btn btn-danger b1">
             </p>
         </form>
     </div>
@@ -60,9 +61,9 @@
         color: red;
     }
     .icon {
-        width: 24%;
+        width: 24px;
         margin-left: 10px;
-
+        margin-bottom: 5px;
     }
 </style>
 
