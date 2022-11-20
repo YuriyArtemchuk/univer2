@@ -1,8 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
 from django.core.mail import send_mail
-from hashlib import md5
+
 
 
 def reg(request):
@@ -17,8 +17,7 @@ def reg(request):
 
         # 2. Сценарій реєстрації
         report = dict()
-        passw = md5(pass1.encode('utf-8')).hexdigest()
-        new_user = User.objects.create_user(login, email, passw)
+        new_user = User.objects.create_user(login, email, pass1)
         if new_user is None:
             report['mess'] = 'У реєстрації відмовлено!'
         else:
@@ -49,11 +48,28 @@ def reg(request):
 
 
 def entry(request):
-    return render(request, 'account/entry.html')
+    if request.method == 'GET':
+        return render(request, 'account/entry.html')
+    elif request.method == "POST":
+        # 1. Зчитуємо із форми авторізаційні дані
+        _login = request.POST.get('login')
+        _pass1 = request.POST.get('pass1')
+        # 2. Сценарій авторизації
+        report = dict()
+        check_user = authenticate(request, username=_login, password=_pass1)
+        if check_user is None:
+            report['mess'] = 'Користувач не знайдений!'
+        else:
+            report['mess'] = 'Ви успішно авторизовані!'
+            login(request, check_user)
+            
+        return render(request, 'account/entry_res.html', context=report)
+    
 
 
 def confirm(request):
-    # Считуємо Email від якого прийшло підтверждення
+    # Считуємо Email від якого прийшло підтверждення (з get параметра в def reg(request)
+    # )
     email = request.GET.get('email')
 
     # Знаходимо користувача із отриманим email
@@ -63,11 +79,13 @@ def confirm(request):
     group = User.groups.filter(name="ConfirmedUser")
     User.groups.add(group)
 
+    # Треба створити в адмінці таку групу
     return render(request, 'account/confirm.html')
 
 
 def exit(request):
-    return render(request, 'account/exit.html')
+    logout(request)
+    return redirect('/home')
 
 
 def profile(request):
