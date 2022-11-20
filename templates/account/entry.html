@@ -3,11 +3,56 @@
 {% block title %}Авторізація{% endblock title %}
 
 {% block caption %}Авторізація{% endblock caption %}
+{% load static %}
 
 {% block content %}
-    <div class="container"
-        style="text-align: center; margin: 45px 0px">
-        <h3 style="color: purple">Авторізація</h3>
-    </div>
+<div class="container"
+    style="text-align: center; margin: 45px 0px">
+    <h3 style="color: purple">Авторизація</h3>
+    <form action="/account/entry" onsubmit="return true" id="form1" method="post">
+        {% csrf_token %}
+        <div class="form_group">
+            Логін: <br>
+            <input type="text" id="login" name="login" required>
+            <img id="login-ico" src="{% static 'img/question.png' %}" alt="..." class="icon">
+            <div id="login-err" class="error"></div>
+        </div>
+        <div class="form_group">
+            Пароль: <br>
+            <input type="password" id="pass1" name="pass1" required>
+            <img id="pass1-ico" src="{% static 'img/question.png' %}" alt="" class="icon">
+            <div id="pass1-err" class="error"></div>
+        </div>
+        <p style="margin-top: 30px; text-align: center">
+            <input id="submit" type="submit" value="Увійти" class="btn btn-success b1">
+            <input id="reset" type="reset" value="Відміна" class="btn btn-danger b1">
+        </p>
+    </form>
+</div>
+<style>
+    #form1 {
+        width: 400px;
+        border: 1px solid silver;
+        border-radius: 15px;
+        margin: 25px auto;
+        padding: 30px 40px;
+        text-align: left;
+        box-shadow: 10px 10px 40px silver;
+    }
+    input {
+        width: 87%;
+    }
+    .b1 {
+        width: 47%;
+    }
+    .error {
+        color: red;
+    }
+    .icon {
+        width: 24px;
+        margin-left: 10px;
+        margin-bottom: 5px;
+    }
+</style>
 
 {% endblock content %}

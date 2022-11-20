@@ -1,13 +1,18 @@
 {% extends 'layouts/base.html' %}
 
-{% block title %}Факультети{% endblock title %}
+{% block title %}Сторінка Факультетів{% endblock title %}
 
 {% block caption %}Сторінка факультетів{% endblock caption %}
 
 {% block content %}
     <div class="container"
-        style="text-align: center; margin: 45px 0px">
-        <h3 style="color: darkcyan">Контент сторінки факультетів</h3>
+        style="text-align: center; margin-top: 45px; margin-bottom: 45px">
+        <h3 style="color: navy">Сторінка факультетів</h3>
+        {% if user.username == 'admin123' %}
+            <div style=" margin: 30px">
+                <a href="/faculties/create" class="btn btn-success">Додати факультет</a>
+            </div>
+        {% endif %}
     </div>
 
 {% endblock content %}

@@ -1,0 +1,35 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %}Додавання факультету{% endblock title %}
+
+{% block caption %}{% endblock caption %}
+
+{% block content %}
+    <div class="container"
+        style="text-align: center; margin-top: 45px; margin-bottom: 45px">
+        <h3 style="color: darkcyan">Додавання факультету</h3>
+        <form method="POST">
+            {% csrf_token %}
+            <table class="faculties">
+                {{ faculty_form }}
+            </table>
+            <div style="text-align: left">
+                <input type="submit" value="Відправити" class="btn btn-success">
+                <input type="reset" value="Очистити" class="btn btn-danger">
+            </div>
+          <form>
+
+    </div>
+<style>
+    .faculties {
+        margin-top: 30px;
+        margin-bottom: 30px;
+    }
+    .faculties input {
+        width: 100%;
+    }
+    .faculties td {
+        vertical-align: top;
+    }
+</style>
+{% endblock content %}
